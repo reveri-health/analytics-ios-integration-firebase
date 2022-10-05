@@ -16,9 +16,10 @@
 
 @property (nonatomic, strong) NSDictionary *settings;
 @property (nonatomic, strong) Class firebaseClass;
+@property (nonatomic, strong) Class crashlyticsClass;
 
 - (id)initWithSettings:(NSDictionary *)settings;
-- (id)initWithSettings:(NSDictionary *)settings andFirebase:(id)firebaseClass;
+- (id)initWithSettings:(NSDictionary *)settings andFirebase:(id)firebaseClass andCrashlyticsClass:(id)crashlyticsClass;
 
 
 @end

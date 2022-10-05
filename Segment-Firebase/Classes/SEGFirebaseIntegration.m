@@ -2,6 +2,7 @@
 
 #import <FirebaseCore/FirebaseCore.h>
 #import <FirebaseAnalytics/FirebaseAnalytics.h>
+#import <FirebaseCrashlytics/FIRCrashlytics.h>
 
 #if defined(__has_include) && __has_include(<Analytics/SEGAnalytics.h>)
 #import <Analytics/SEGAnalyticsUtils.h>
@@ -19,6 +20,8 @@
     if (self = [super init]) {
         self.settings = settings;
         self.firebaseClass = [FIRAnalytics class];
+        self.crashlyticsClass = [[FIRCrashlytics crashlytics] class];
+        
         NSString *deepLinkURLScheme = [self.settings objectForKey:@"deepLinkURLScheme"];
         if (deepLinkURLScheme) {
             [FIROptions defaultOptions].deepLinkURLScheme = deepLinkURLScheme;
@@ -36,11 +39,12 @@
     return self;
 }
 
-- (id)initWithSettings:(NSDictionary *)settings andFirebase:(id)firebaseClass;
+- (id)initWithSettings:(NSDictionary *)settings andFirebase:(id)firebaseClass andCrashlyticsClass:(id)crashlyticsClass;
 {
     if (self = [super init]) {
         self.settings = settings;
         self.firebaseClass = firebaseClass;
+        self.crashlyticsClass = crashlyticsClass;
     }
     return self;
 }
@@ -50,6 +54,11 @@
     if (payload.userId) {
         [self.firebaseClass setUserID:payload.userId];
         SEGLog(@"[FIRAnalytics setUserId:%@]", payload.userId);
+        
+        [[self.crashlyticsClass self] setUserID: payload.userId];
+        
+        [[FIRCrashlytics crashlytics] setUserID: payload.userId];
+        SEGLog(@"[FIRCrashlutics setUserId:%@]", payload.userId);
     }
     // Firebase requires user properties to be an NSString
     NSDictionary *mappedTraits = [SEGFirebaseIntegration mapToStrings:payload.traits];
