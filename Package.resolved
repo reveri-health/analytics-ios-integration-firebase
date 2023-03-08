@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "analytics-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/segmentio/analytics-ios.git",
+      "state" : {
+        "revision" : "78423aaae2e48e32a07246850f37c76f3d34cb84",
+        "version" : "4.1.8"
+      }
+    },
+    {
+      "identity" : "firebase-ios-sdk-xcframeworks",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/reveri-health/firebase-ios-sdk-xcframeworks",
+      "state" : {
+        "revision" : "2c0fbbd0ff29cbfad95dd88519d005a15445aab7",
+        "version" : "10.2.0"
+      }
+    }
+  ],
+  "version" : 2
+}
