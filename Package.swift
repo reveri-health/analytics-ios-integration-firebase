@@ -7,7 +7,9 @@ let package = Package(
     products: [.library(name: "SegmentFirebase", targets: ["SegmentFirebase"])],
     dependencies: [
       .package(url: "https://github.com/segmentio/analytics-ios.git", from: "4.1.8"),
-      .package(url: "https://github.com/reveri-health/firebase-ios-sdk-xcframeworks", branch: "release/10.7.0")
+      // NOTE: The repackaging of the firebase sdk results in a mismatch in name and a duplicate firebase package dependency without the deprecated named version
+      // NOTE: There may be a workaround for this to fix the identity between the app dependency and the analytics dependency but skipping research for time
+      .package(name: "firebase-ios-sdk", url: "https://github.com/reveri-health/firebase-ios-sdk-xcframeworks", branch: "release/10.7.0")
     ],
     targets: [
         .target(
